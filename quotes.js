@@ -50,3 +50,5 @@ const QuotesList = [
     { id: 49, author: "Confucius", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Friendship" },
     { id: 50, author: "Oscar Wilde", quote: "The purpose of our lives is to be happy.", category: "Happiness" }
 ];
+
+export default QuotesList;
