@@ -2,6 +2,7 @@ import QuotesList from "./quotes.js";
         // selection html tags
         const quoteTag = document.querySelector("#quoteLine");
         const authorTag = document.querySelector("#quoteAuthor");
+        const changeBtn = document.querySelector("#changeBtn");
         let index = 0;
 
         // change quote function
@@ -23,6 +24,9 @@ import QuotesList from "./quotes.js";
             }
 
         }
+
+        // on changeBtn click
+        changeBtn.addEventListener("click", changeQuote);
 
         // once call changeQuote() function so that when page loads it get called itself.
         changeQuote();
