@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuotesBook</title>
 
     <style>
-         /* <!-- google fonts link --> */
+        /* <!-- google fonts link --> */
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap');
 
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
             font-family: "Poppins", serif;
         }
 
-        body{
+        body {
             background-color: #0b2947;
             color: #ddd;
             padding: 2rem;
@@ -27,18 +28,19 @@
             text-align: center;
         }
 
-        main{
+        main {
             width: 100%;
             height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .container{
+
+        .container {
             width: 50%;
         }
 
-        .quote{
+        .quote {
             height: 50vh;
             padding: 2rem;
             border: 1px solid #ddd;
@@ -47,28 +49,31 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        .quote .quote-line{
+
+        .quote .quote-line {
             height: 38vh;
             width: 100%;
             display: flex;
             justify-content: center;
         }
 
-        .quote h1{
+        .quote h1 {
             font-size: 2.5rem;
             margin: auto;
         }
-        .quote p{
+
+        .quote p {
             font-size: 14px;
             text-align: end;
         }
 
-        .btn-wrapper{
+        .btn-wrapper {
             text-align: center;
             padding: 1rem;
             margin-top: 2rem;
         }
-        .btn-wrapper button{
+
+        .btn-wrapper button {
             padding: .8rem 3rem;
             cursor: pointer;
             border-radius: 5px;
@@ -77,99 +82,125 @@
             cursor: pointer;
             transition: all .5s ease;
         }
-        .btn-wrapper button:hover{
+
+        .btn-wrapper button:hover {
             background-color: #ccc;
         }
-        footer p{
+
+        footer p {
             font-size: 12px;
         }
-     </style>
+    </style>
 </head>
+
 <body>
     <header>
         <hr>
         <h1>QuotesBook</h1>
         <hr>
     </header>
-   
-<main>
-    <div class="container">
-        <div class="quote">
-            <div class="quote-line">
-                <h1>" Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, deleniti."</h1>
+
+    <main>
+        <div class="container">
+            <div class="quote">
+                <div class="quote-line">
+                    <h1 id="quoteLine">" Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, deleniti."</h1>
+                </div>
+
+
+                <div class="quote-author">
+                    <p id="quoteAuthor">- lorem ipsum</p>
+                </div>
             </div>
 
+            <div class="btn-wrapper">
+                <button onclick="changeQuote()">Next Quote</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Developed By Rajdev Yadav</p>
+    </footer>
+
+    <!-- javascript  -->
+    <script>
+        const QuotesList = [
+            { id: 1, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Friendship" },
+            { id: 2, author: "Oscar Wilde", quote: "Believe you can and you're halfway there.", category: "Love" },
+            { id: 3, author: "Mark Twain", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Love" },
+            { id: 4, author: "Confucius", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Love" },
+            { id: 5, author: "Maya Angelou", quote: "You miss 100% of the shots you don’t take.", category: "Love" },
+            { id: 6, author: "Helen Keller", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Success" },
+            { id: 7, author: "Maya Angelou", quote: "Believe you can and you're halfway there.", category: "Friendship" },
+            { id: 8, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Love" },
+            { id: 9, author: "Confucius", quote: "You miss 100% of the shots you don’t take.", category: "Love" },
+            { id: 10, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Motivation" },
+            { id: 11, author: "Albert Einstein", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Wisdom" },
+            { id: 12, author: "Confucius", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Success" },
+            { id: 13, author: "Albert Einstein", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Love" },
+            { id: 14, author: "Maya Angelou", quote: "The purpose of our lives is to be happy.", category: "Motivation" },
+            { id: 15, author: "Albert Einstein", quote: "You miss 100% of the shots you don’t take.", category: "Friendship" },
+            { id: 16, author: "Helen Keller", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Happiness" },
+            { id: 17, author: "Mark Twain", quote: "Believe you can and you're halfway there.", category: "Wisdom" },
+            { id: 18, author: "Oscar Wilde", quote: "You miss 100% of the shots you don’t take.", category: "Life" },
+            { id: 19, author: "Aristotle", quote: "The purpose of our lives is to be happy.", category: "Life" },
+            { id: 20, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Life" },
+            { id: 21, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
+            { id: 22, author: "Mark Twain", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Love" },
+            { id: 23, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
+            { id: 24, author: "Albert Einstein", quote: "The purpose of our lives is to be happy.", category: "Life" },
+            { id: 25, author: "Confucius", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
+            { id: 26, author: "Helen Keller", quote: "Life is what happens when you're busy making other plans.", category: "Wisdom" },
+            { id: 27, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Motivation" },
+            { id: 28, author: "Oscar Wilde", quote: "The purpose of our lives is to be happy.", category: "Love" },
+            { id: 29, author: "Mark Twain", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Friendship" },
+            { id: 30, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Life" },
+            { id: 31, author: "Oscar Wilde", quote: "Get busy living or get busy dying.", category: "Happiness" },
+            { id: 32, author: "Aristotle", quote: "Believe you can and you're halfway there.", category: "Happiness" },
+            { id: 33, author: "Oscar Wilde", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Motivation" },
+            { id: 34, author: "Helen Keller", quote: "The only way to do great work is to love what you do.", category: "Love" },
+            { id: 35, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Motivation" },
+            { id: 36, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Friendship" },
+            { id: 37, author: "Oscar Wilde", quote: "Life is what happens when you're busy making other plans.", category: "Happiness" },
+            { id: 38, author: "Albert Einstein", quote: "The only way to do great work is to love what you do.", category: "Success" },
+            { id: 39, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Happiness" },
+            { id: 40, author: "Mark Twain", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Life" },
+            { id: 41, author: "Mark Twain", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Success" },
+            { id: 42, author: "Maya Angelou", quote: "Believe you can and you're halfway there.", category: "Love" },
+            { id: 43, author: "Albert Einstein", quote: "The purpose of our lives is to be happy.", category: "Happiness" },
+            { id: 44, author: "Maya Angelou", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Success" },
+            { id: 45, author: "Helen Keller", quote: "Believe you can and you're halfway there.", category: "Love" },
+            { id: 46, author: "Maya Angelou", quote: "The only way to do great work is to love what you do.", category: "Success" },
+            { id: 47, author: "Helen Keller", quote: "In the middle of every difficulty lies opportunity.", category: "Friendship" },
+            { id: 48, author: "Aristotle", quote: "You miss 100% of the shots you don’t take.", category: "Friendship" },
+            { id: 49, author: "Confucius", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Friendship" },
+            { id: 50, author: "Oscar Wilde", quote: "The purpose of our lives is to be happy.", category: "Happiness" }
+        ];
+
+        // selection html tags
+        const quoteTag = document.querySelector("#quoteLine");
+        const authorTag = document.querySelector("#quoteAuthor");
+        let index = 0;
+
+        // change quote function
+        function changeQuote() {
+            // testing everything in console.log()
+            console.log(QuotesList[index]);
+            console.log(QuotesList.length);
+
+
+            // as we know, we have 50 quotes. it means array length is 50. so we are writing conditions, if index value is 49+ then set it index = 0;
             
-            <div class="quote-author">
-                <p>- lorem ipsum</p>
-            </div>
-        </div>
+            if (index >= QuotesList.length - 1) {
+                i = 0;
+            } else {
+                index++;
 
-        <div class="btn-wrapper">
-            <button>Next Quote</button>
-        </div>
-    </div>
-</main>
+            }
 
-<footer>
-    <p>Developed By Rajdev Yadav</p>
-</footer>
-
-<!-- javascript  -->
- <script>
-    const QuotesList = [
-  { id: 1, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Friendship" },
-  { id: 2, author: "Oscar Wilde", quote: "Believe you can and you're halfway there.", category: "Love" },
-  { id: 3, author: "Mark Twain", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Love" },
-  { id: 4, author: "Confucius", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Love" },
-  { id: 5, author: "Maya Angelou", quote: "You miss 100% of the shots you don’t take.", category: "Love" },
-  { id: 6, author: "Helen Keller", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Success" },
-  { id: 7, author: "Maya Angelou", quote: "Believe you can and you're halfway there.", category: "Friendship" },
-  { id: 8, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Love" },
-  { id: 9, author: "Confucius", quote: "You miss 100% of the shots you don’t take.", category: "Love" },
-  { id: 10, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Motivation" },
-  { id: 11, author: "Albert Einstein", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Wisdom" },
-  { id: 12, author: "Confucius", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Success" },
-  { id: 13, author: "Albert Einstein", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Love" },
-  { id: 14, author: "Maya Angelou", quote: "The purpose of our lives is to be happy.", category: "Motivation" },
-  { id: 15, author: "Albert Einstein", quote: "You miss 100% of the shots you don’t take.", category: "Friendship" },
-  { id: 16, author: "Helen Keller", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Happiness" },
-  { id: 17, author: "Mark Twain", quote: "Believe you can and you're halfway there.", category: "Wisdom" },
-  { id: 18, author: "Oscar Wilde", quote: "You miss 100% of the shots you don’t take.", category: "Life" },
-  { id: 19, author: "Aristotle", quote: "The purpose of our lives is to be happy.", category: "Life" },
-  { id: 20, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Life" },
-  { id: 21, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
-  { id: 22, author: "Mark Twain", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Love" },
-  { id: 23, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
-  { id: 24, author: "Albert Einstein", quote: "The purpose of our lives is to be happy.", category: "Life" },
-  { id: 25, author: "Confucius", quote: "In the middle of every difficulty lies opportunity.", category: "Wisdom" },
-  { id: 26, author: "Helen Keller", quote: "Life is what happens when you're busy making other plans.", category: "Wisdom" },
-  { id: 27, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Motivation" },
-  { id: 28, author: "Oscar Wilde", quote: "The purpose of our lives is to be happy.", category: "Love" },
-  { id: 29, author: "Mark Twain", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Friendship" },
-  { id: 30, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Life" },
-  { id: 31, author: "Oscar Wilde", quote: "Get busy living or get busy dying.", category: "Happiness" },
-  { id: 32, author: "Aristotle", quote: "Believe you can and you're halfway there.", category: "Happiness" },
-  { id: 33, author: "Oscar Wilde", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Motivation" },
-  { id: 34, author: "Helen Keller", quote: "The only way to do great work is to love what you do.", category: "Love" },
-  { id: 35, author: "Oscar Wilde", quote: "In the middle of every difficulty lies opportunity.", category: "Motivation" },
-  { id: 36, author: "Aristotle", quote: "Life is what happens when you're busy making other plans.", category: "Friendship" },
-  { id: 37, author: "Oscar Wilde", quote: "Life is what happens when you're busy making other plans.", category: "Happiness" },
-  { id: 38, author: "Albert Einstein", quote: "The only way to do great work is to love what you do.", category: "Success" },
-  { id: 39, author: "Confucius", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Happiness" },
-  { id: 40, author: "Mark Twain", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Life" },
-  { id: 41, author: "Mark Twain", quote: "Success is not the key to happiness. Happiness is the key to success.", category: "Success" },
-  { id: 42, author: "Maya Angelou", quote: "Believe you can and you're halfway there.", category: "Love" },
-  { id: 43, author: "Albert Einstein", quote: "The purpose of our lives is to be happy.", category: "Happiness" },
-  { id: 44, author: "Maya Angelou", quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Success" },
-  { id: 45, author: "Helen Keller", quote: "Believe you can and you're halfway there.", category: "Love" },
-  { id: 46, author: "Maya Angelou", quote: "The only way to do great work is to love what you do.", category: "Success" },
-  { id: 47, author: "Helen Keller", quote: "In the middle of every difficulty lies opportunity.", category: "Friendship" },
-  { id: 48, author: "Aristotle", quote: "You miss 100% of the shots you don’t take.", category: "Friendship" },
-  { id: 49, author: "Confucius", quote: "Happiness is not something ready made. It comes from your own actions.", category: "Friendship" },
-  { id: 50, author: "Oscar Wilde", quote: "The purpose of our lives is to be happy.", category: "Happiness" }
-];
-
- </script>
+        }
+    </script>
 </body>
+
 </html>
